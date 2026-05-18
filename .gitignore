@@ -1,0 +1,10 @@
+*
+
+!hypr/
+!hypr/**
+
+!kitty/
+!kitty/**
+
+!.gitignore
+!README.md
