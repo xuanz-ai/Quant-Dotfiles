@@ -1,0 +1,88 @@
+* {
+    bg: #1a1a26de;
+    bg-alt: #2a2a5178;
+
+    fg: #f3e2a1;
+    fg2: #d5c89a;
+
+    border: #a7ada042;
+
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    width: 600px;
+
+
+    border: 1px;
+    border-color: @border;
+
+    border-radius: 6px;
+
+    background-color: @bg;
+
+    padding: 50px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 18px;
+}
+
+inputbar {
+    background-color: @bg-alt;
+
+    border-radius: 6px;
+
+    padding: 12px;
+}
+
+prompt {
+    enabled: false;
+}
+
+entry {
+    placeholder: "Select Wallpaper";
+    placeholder-color: #777777;
+}
+
+listview {
+    columns: 4;
+    lines: 2;
+    spacing: 12px;
+
+    cycle: false;
+    dynamic: true;
+
+    scrollbar: false;
+}
+
+element {
+    orientation: vertical;
+
+    border-radius: 6px;
+
+    padding: 10px;
+    max-width: 100px;
+    background-color: transparent;
+}
+
+element selected {
+    background-color: @bg-alt;
+}
+
+element-icon {
+    size: 132px;
+    margin: 0px 16px 0px 16px;
+}
+
+element-text {
+    horizontal-align: 0.5;
+
+    text-color: @fg;
+}
+
+element selected element-text {
+    text-color: @fg2;
+}

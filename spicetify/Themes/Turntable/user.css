@@ -1,0 +1,258 @@
+:root {
+  --spotify-main-color: #89b4fa;
+  --spotify-bg: #16161D;
+  --spotify-bg2: #1A1A26;
+  --spotify-fg: #d5c89a;
+  --spotify-fg2: #b6b09e;
+
+  --round-value: 18px;
+  --main-blur-backdrop: blur(20px) saturate(180%);
+}
+
+body,
+.Root__top-container,
+.Root__main-view,
+.main-view-container,
+.main-home-homeHeader {
+  background: rgba(22, 22, 29, 0.76) !important;
+  backdrop-filter: blur(20px);
+  color: var(--spotify-fg) !important;
+}
+
+.main-topBar-UpgradeButton {
+  display: none;
+}
+
+.main-userWidget-notificationDot {
+  color: var(--spotify-main-color);
+}
+
+.main-topBar-topbarContentWrapper,
+.main-topBar-topbarContent,
+.main-globalNav-searchContainer,
+.main-globalNav-searchSection,
+.main-globalNav-navLink {
+    background: rgba(26,26,38,0.78) !important;
+    backdrop-filter: blur(18px) !important;
+    border: 1px solid rgba(137,180,250,0.08);
+}
+
+/* SEARCH INPUT */
+.x-searchInput-searchInputInput {
+    background: rgba(22,22,29,0.82) !important;
+    color: #d5c89a !important;
+}
+
+/* SEARCH ICON */
+.x-searchInput-searchInputSearchIcon {
+    color: #89b4fa !important;
+}
+
+/* HOME BUTTON */
+.main-globalNav-homeIcon,
+.main-globalNav-navLink {
+    background: rgba(26,26,38,0.72) !important;
+    border-radius: 14px !important;
+}
+
+/* INSTALL APP BUTTON */
+.main-topBar-button,
+.Button-sc-1dqy6lx-0 {
+    background: rgba(26,26,38,0.72) !important;
+    color: #d5c89a !important;
+}
+
+/* PLAYLIST */
+.main-entityHeader-backgroundColor,
+.main-actionBarBackground-background,
+.main-topBar-overlay,
+.main-entityHeader-overlay {
+  background: unset !important;
+}
+
+.main-entityHeader-shadow {
+  box-shadow: unset;
+}
+
+.main-topBar-background {
+  background-color: rgba(22,22,29,0.72) !important;
+  backdrop-filter: blur(16px);
+}
+
+/* PLAYLIST ROWS */
+.main-rootlist-wrapper [role="row"]:nth-child(odd) {
+  background: linear-gradient(
+    to right,
+    #16161D,
+    #1A1A26,
+    #16161D
+  );
+}
+
+/* CARDS */
+.main-card-card {
+  background: rgba(26,26,38,0.62) !important;
+  border-radius: 18px !important;
+  transition: all .2s ease;
+}
+
+.main-card-card:hover {
+  background: rgba(36,36,50,0.88) !important;
+  transform: scale(1.02);
+}
+
+/* COVER IMAGE */
+.main-coverSlotCollapsed-container {
+  margin-right: 5px;
+}
+
+[data-testid="cover-art-button"] {
+  border-radius: var(--round-value);
+  border: 2px solid rgba(137,180,250,0.35);
+  box-shadow: 0 0 12px rgba(137,180,250,.12);
+}
+
+.main-nowPlayingWidget-coverArt .cover-art {
+  width: 62px !important;
+  height: 62px !important;
+  box-shadow: unset;
+}
+
+/* BUTTONS */
+button {
+  border-radius: 12px !important;
+}
+
+/* EXPAND BUTTON */
+.main-coverSlotCollapsed-expandButton,
+.main-coverSlotExpandedCollapseButton-collapseButton {
+  backdrop-filter: var(--main-blur-backdrop);
+  background-color: rgba(22,22,29,.35);
+  border-radius: var(--round-value);
+  transition: all .2s ease;
+}
+
+.main-coverSlotCollapsed-expandButton:hover,
+.main-coverSlotExpandedCollapseButton-collapseButton:hover {
+  background-color: rgba(26,26,38,.72);
+}
+
+.main-coverSlotCollapsed-chevron,
+.main-coverSlotExpandedCollapseButton-chevron {
+  fill: var(--spotify-fg);
+}
+
+/* NOW PLAYING BAR */
+.main-nowPlayingBar-nowPlayingBar {
+  background: rgba(26,26,38,0.72) !important;
+  border-top: 1px solid rgba(137,180,250,0.12);
+  backdrop-filter: blur(20px);
+}
+
+/* PROGRESS BAR */
+.Root__now-playing-bar {
+  position: relative;
+}
+
+.playback-bar {
+  width: 100%;
+  position: absolute;
+  top: calc(0px - var(--panel-gap));
+  left: 0;
+}
+
+.playback-progressbar {
+  height: var(--progress-bar-height);
+}
+
+.x-progressBar-progressBarBg > div > div {
+  background-color: var(--spotify-main-color);
+}
+
+.playback-bar__progress-time-elapsed,
+.main-playbackBarRemainingTime-container {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  color: var(--spotify-fg2);
+}
+
+.playback-bar__progress-time-elapsed {
+  transform: translateX(calc(-100% - 10px));
+}
+
+.playback-bar__progress-time-elapsed::after {
+  position: absolute;
+  left: calc(100% + 10px);
+  font-weight: bold;
+  color: var(--spotify-main-color);
+  content: "/";
+  transform: translateX(-50%);
+}
+
+.main-playbackBarRemainingTime-container {
+  transform: translateX(10px);
+}
+
+.player-controls {
+  margin-top: 38px;
+}
+
+/* TEXT */
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  color: var(--spotify-fg);
+}
+
+/* LINKS */
+a {
+  color: var(--spotify-main-color) !important;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar-thumb {
+  background: rgba(137,180,250,0.32);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* HOVER */
+button:hover,
+.main-trackList-trackListRow:hover {
+  background: rgba(137,180,250,0.08) !important;
+}
+
+/* FULL APP DISPLAY */
+#full-app-display {
+  background: radial-gradient(
+    circle,
+    #1A1A26,
+    #16161D
+  );
+}
+
+#fad-background {
+  display: none;
+}
+
+#fad-progress-inner {
+  background-color: var(--spotify-main-color) !important;
+}
+
+/* ROTATE COVER */
+.main-nowPlayingWidget-coverArt > .cover-art,
+#fad-art {
+  animation: rotate-cover_img 24s linear infinite paused;
+}
+
+@keyframes rotate-cover_img {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

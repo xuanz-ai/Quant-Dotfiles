@@ -3,8 +3,31 @@
 !hypr/
 !hypr/**
 
+!fastfetch/
+!fastfetch/**
+
+!fish/
+!fish/**
+
+!waybar/
+!waybar/**
+
+!starship.toml
+
 !kitty/
 !kitty/**
+
+!rofi/
+!rofi/**
+
+!spicetify/
+!spicetify/**
+
+!cava/
+!cava/**
+
+!btop/
+!btop/**
 
 !.gitignore
 !README.md

@@ -1,0 +1,277 @@
+* {
+    border: none;
+    border-radius: 0;
+
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 10px;
+
+    min-height: 0;
+}
+
+@define-color bg #16161D;
+@define-color bg2 #1A1A26;
+
+@define-color fg #d5c89a;
+@define-color fg2 #b6b09e;
+
+@define-color accent #89b4fa;
+
+window#waybar {
+    background: transparent;
+    color: @fg;
+}
+
+#custom-arch,
+#window,
+#clock,
+#custom-notification,
+#mpris,
+#tray,
+#network,
+#battery,
+#power-profiles-daemon {
+    background: alpha(@bg, 0.92);
+
+    color: @fg;
+
+    margin: 5px 3px; padding: 4px 20px; border-radius: 5px;
+
+    transition: all 0.18s ease;
+}
+
+#custom-arch:hover,
+#clock:hover,
+#custom-notification:hover,
+#mpris:hover,
+#tray:hover,
+#network:hover,
+#battery:hover,
+#power-profiles-daemon:hover {
+    background: alpha(@bg2, 0.96);
+}
+
+/* =========================
+   LEFT
+========================= */
+
+#custom-arch {
+    background: alpha(@bg, 0.92);
+
+    color: @fg;
+
+    font-size: 13px;
+
+    min-width: 18px;
+
+    
+
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+#custom-arch label {
+    padding: 0;
+    margin: 0;
+}
+#workspaces {
+    background: alpha(@bg2, 0.50);
+    margin: 5px 3px;
+    padding: 3px 1px;
+
+    border-radius: 5px;
+}
+
+#workspaces button {
+    background: @bg;
+
+    color: @fg2;
+
+    margin: 0 2px;
+    padding: 0px 8px;
+
+    min-height: 0px;
+    min-width: 20px;
+
+    border-radius: 5px;
+
+    font-size: 9px;
+
+    transition: all 0.2s ease;
+}
+#workspaces button.active {
+    background: @accent;
+    color: #11111b;
+        padding: 1px 25px;
+}
+
+#workspaces button:hover {
+    background: alpha(@bg2, 0.96);
+    color: @fg;
+}
+
+/* =========================
+   TASKBAR
+========================= */
+
+#taskbar {
+    background: transparent;
+    margin: 5px 10px;
+}
+
+#taskbar button {
+    background: alpha(@bg, 0.92);
+
+    margin: 0 3px;
+    padding: 1px 5px;
+
+    border-radius: 5px;
+
+    padding-left: 10px;
+    padding-right: 8px;
+
+    transition: all 0.18s ease;
+}
+
+#taskbar button.active {
+    background: @accent;
+}
+
+#taskbar button:hover {
+    background: alpha(@bg2, 0.96);
+}
+
+#taskbar.empty {
+    background: transparent;
+}
+
+/* =========================
+   CENTER
+========================= */
+
+#mpris {
+    min-width: 180px;
+    color: @fg;
+}
+
+#clock {
+    font-weight: bold;
+    color: @fg;
+}
+
+#custom-notification {
+    font-size: 10px;
+}
+
+/* =========================
+   RIGHT
+========================= */
+
+#wireplumber,
+#pulseaudio {
+    background: alpha(@bg, 0.92);
+    color: @fg;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 4px 8px;
+    border-radius: 0;
+}
+
+#wireplumber {
+    margin-left: 3px;
+    margin-right: 0;
+    padding-left: 16px;
+    border-radius: 5px 0 0 5px;
+}
+
+#pulseaudio {
+    margin-left: 0;
+    margin-right: 3px;
+    padding-right: 16px;
+    border-radius: 0 5px 5px 0;
+}
+
+#wireplumber:hover,
+#pulseaudio:hover {
+    background: alpha(@bg2, 0.96);
+}
+
+#network {
+    color: @fg;
+    min-width: 18px;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+#tray {
+    color: @fg;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#cpu,
+#memory,
+#disk {
+    background: alpha(@bg, 0.92);
+    color: @fg;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 4px 8px;
+    border-radius: 0;
+}
+
+#cpu {
+    margin-left: 3px;
+    margin-right: 0;
+    padding-left: 16px;
+    border-radius: 5px 0 0 5px;
+}
+
+#memory {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#disk {
+    margin-left: 0;
+    margin-right: 3px;
+    padding-right: 16px;
+    border-radius: 0 5px 5px 0;
+}
+
+#cpu:hover,
+#memory:hover,
+#disk:hover {
+    background: alpha(@bg2, 0.96);
+}
+
+#battery {
+    color: @fg;
+}
+
+#battery.warning {
+    color: @fg;
+}
+
+#battery.critical {
+    color: @fg;
+}
+
+#power-profiles-daemon {
+    color: @fg;
+}
+
+/* =========================
+   GROUP SPACING
+========================= */
+
+#group-audio,
+#group-power {
+    margin: 0;
+    padding: 0;
+}
+
+#group-system {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}

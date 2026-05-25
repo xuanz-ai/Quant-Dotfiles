@@ -1,0 +1,179 @@
+{
+    "layer": "top",
+    "position": "top",
+
+    "height": 30,
+
+    "margin-top": 0,
+    "margin-left": 1,
+    "margin-right": 1,
+    "margin-bottom": 0,
+
+    "modules-left": [
+        "custom/arch",
+        "hyprland/workspaces",
+        "wlr/taskbar"
+    ],
+
+    "modules-center": [
+        "mpris",
+        "clock",
+        "custom/notification"
+    ],
+
+    "modules-right": [
+        "tray",
+        "network",
+        "group/audio",
+        "group/system",
+        "group/power"
+    ],
+
+    "custom/arch": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "all-outputs": true,
+
+        "persistent-workspaces": {
+            "*": [1,2,3,4,5,6]
+        },
+
+        "format-icons": {
+            "active": "●",
+            "default": "○"
+        }
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 15,
+
+        "spacing": 0,
+
+        "tooltip-format": "{title}",
+
+        "on-click": "activate",
+        "on-click-middle": "close",
+
+        "ignore-list": [
+            "rofi",
+            "wofi"
+        ]
+    },
+
+    "mpris": {
+        "format": "  {title}",
+        "format-paused": "  {title}",
+        "max-length": 30,
+        "tooltip": false
+    },
+
+    "clock": {
+        "format": "󰥔 {:%H:%M}",
+        "tooltip": false
+    },
+
+    "custom/notification": {
+        "format": "",
+        "tooltip": false,
+
+        "on-click": "swaync-client -t"
+    },
+
+    "group/audio": {
+        "orientation": "horizontal",
+
+        "modules": [
+            "wireplumber",
+            "pulseaudio"
+        ]
+    },
+
+    "wireplumber": {
+        "format": "󰍬 {volume}%",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "󰕾 {volume}%",
+        "format-muted": "󰝟 muted",
+        "tooltip": false
+    },
+
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "format-linked": "󰈀",
+        "format-disconnected": "󰖪",
+        "format-disabled": "󰖪",
+        "tooltip": true,
+        "tooltip-format-wifi": "Wi-Fi: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
+        "tooltip-format-ethernet": "Ethernet: {ifname}\nIP: {ipaddr}",
+        "tooltip-format-disconnected": "Network offline",
+        "tooltip-format-disabled": "Network disabled",
+        "on-click": "sh -c 'if [ \"$(nmcli networking)\" = enabled ]; then nmcli networking off; else nmcli networking on; fi'",
+        "on-click-right": "sh -c 'gdbus call --session --dest org.freedesktop.network-manager-applet --object-path /org/ayatana/NotificationItem/nm_applet --method org.kde.StatusNotifierItem.SecondaryActivate 0 0 >/dev/null 2>&1 || nm-connection-editor'"
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 6,
+        "show-passive-items": false
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+
+        "modules": [
+            "cpu",
+            "memory",
+            "disk"
+        ]
+    },
+
+    "cpu": {
+        "format": " {usage}%"
+    },
+
+    "memory": {
+        "format": "󰍛 {}%"
+    },
+
+    "disk": {
+        "path": "/",
+        "format": "󰋊 {percentage_used}%"
+    },
+
+    "group/power": {
+        "orientation": "horizontal",
+
+        "modules": [
+            "battery",
+            "power-profiles-daemon"
+        ]
+    },
+
+    "battery": {
+        "format": "󰁹 {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-warning": "󰂃 {capacity}%",
+        "tooltip": false
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+
+    "format-icons": {
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+    },
+
+        "tooltip": false
+    }
+}
