@@ -1,4 +1,9 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export ANTHROPIC_AUTH_TOKEN:sk\x2dd0c0f9c020c94c1783456caf837ac959
+SETUVAR --export ANTHROPIC_BASE_URL:https\x3a//api\x2edeepseek\x2ecom/anthropic
+SETUVAR --export ANTHROPIC_DEFAULT_OPUS_MODEL:deepseek\x2dv4\x2dpro
+SETUVAR --export ANTHROPIC_DEFAULT_SONNET_MODEL:deepseek\x2dv4\x2dpro
+SETUVAR --export ANTHROPIC_MODEL:deepseek\x2dv4\x2dpro
 SETUVAR __fish_initialized:4300
 SETUVAR fish_user_paths:/home/xuanz/\x2elocal/bin

@@ -1,0 +1,298 @@
+;; =========================================================
+;; EWW CONTROL CENTER  +  MEDIA POPUP
+;; ~/.config/eww/eww.yuck
+;; =========================================================
+
+;; ── Media info polls (1s, cache-backed) ──────────────
+
+(defpoll m_title        :interval "1s" `~/.config/eww/scripts/media-info.sh title`)
+(defpoll m_artist       :interval "1s" `~/.config/eww/scripts/media-info.sh artist`)
+(defpoll m_art_path     :interval "1s" `~/.config/eww/scripts/media-info.sh art_path`)
+(defpoll m_player_icon  :interval "1s" `~/.config/eww/scripts/media-info.sh player_icon`)
+(defpoll m_pos_str      :interval "1s" `~/.config/eww/scripts/media-info.sh position_str`)
+(defpoll m_dur_str      :interval "1s" `~/.config/eww/scripts/media-info.sh duration_str`)
+(defpoll m_pos_pct      :interval "1s" `~/.config/eww/scripts/media-info.sh position_pct`)
+(defpoll m_play_icon    :interval "1s" `~/.config/eww/scripts/media-info.sh play_icon`)
+(defpoll m_vol_icon     :interval "1s" `~/.config/eww/scripts/media-info.sh vol_icon`)
+(defpoll m_volume       :interval "1s" `~/.config/eww/scripts/media-info.sh volume`)
+(defpoll m_vol_str      :interval "1s" `~/.config/eww/scripts/media-info.sh vol_str`)
+
+;; ── Media player popup (toggled from Waybar mpris) ───
+
+(defwindow media_popup
+  :monitor 0
+  :geometry (geometry
+    :x "0%"
+    :y "40px"
+    :width "380px"
+    :height "185px"
+    :anchor "top center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+
+  (box
+    :class "media-popup"
+    :orientation "h"
+    :spacing 16
+
+    ;; ── Album art ───────────────────────────────────
+
+    (box
+      :class "media-art-box"
+      (image
+        :class "media-art"
+        :path m_art_path
+        :image-width 115
+        :image-height 115))
+
+    ;; ── Info + controls ─────────────────────────────
+
+    (box
+      :class "media-content"
+      :orientation "v"
+      :spacing 6
+      :halign "fill"
+
+      ;; Title + player source icon
+      (box
+        :class "media-title-row"
+        :spacing 8
+        (label :class "player-icon" :text m_player_icon)
+        (label :class "media-title" :text m_title
+               :halign "start" :wrap true :limit-width 20))
+
+      ;; Artist
+      (label :class "media-artist" :text m_artist
+             :halign "start")
+
+      ;; Progress bar + times
+      (box
+        :class "media-progress-row"
+        :spacing 8
+        (label :class "media-time" :text m_pos_str)
+        (scale
+          :class "media-progress"
+          :min 0
+          :max 100
+          :value m_pos_pct)
+        (label :class "media-time" :text m_dur_str))
+
+      ;; Playback controls
+      (box
+        :class "media-controls"
+        :spacing 16
+        :halign "center"
+
+        (button
+          :class "media-btn"
+          :onclick "playerctl previous"
+          "󰒮")
+
+        (button
+          :class "media-btn play-btn"
+          :onclick "playerctl play-pause"
+          m_play_icon)
+
+        (button
+          :class "media-btn"
+          :onclick "playerctl next"
+          "󰒭"))
+
+      ;; Volume slider
+      (box
+        :class "media-volume-row"
+        :spacing 8
+        (label :class "media-vol-icon" :text m_vol_icon)
+        (scale
+          :class "media-volume"
+          :min 0
+          :max 100
+          :value m_volume
+          :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%")
+        (label :class "media-vol-pct" :text m_vol_str))))
+
+)
+
+;; ── Existing control center ──────────────────────────
+
+(defwindow controlcenter
+  :monitor 0
+  :geometry (geometry
+    :x "20px"
+    :y "20px"
+    :width "380px"
+    :height "720px"
+    :anchor "top right")
+
+  :stacking "fg"
+  :exclusive false
+
+  (box
+    :orientation "v"
+    :class "control-center"
+    :spacing 20
+
+    ;; =====================================================
+    ;; HEADER
+    ;; =====================================================
+
+    (label
+      :class "title"
+      :text "Control Center")
+
+    ;; =====================================================
+    ;; QUICK TOGGLES 3x3
+    ;; =====================================================
+
+    (box
+      :orientation "v"
+      :spacing 10
+
+      ;; ROW 1
+      (box
+        :spacing 10
+
+        (button
+          :class "toggle-btn"
+          :onclick "nmcli radio wifi off || nmcli radio wifi on"
+          "󰖩")
+
+        (button
+          :class "toggle-btn"
+          :onclick "bluetoothctl power off || bluetoothctl power on"
+          "󰂯")
+
+        (button
+          :class "toggle-btn"
+          :onclick "hyprshade on blue-light-filter"
+          "󰌵"))
+
+      ;; ROW 2
+      (box
+        :spacing 10
+
+        (button
+          :class "toggle-btn"
+          :onclick "hyprlock"
+          "󰌾")
+
+        (button
+          :class "toggle-btn"
+          :onclick "pamixer -t"
+          "󰖁")
+
+        (button
+          :class "toggle-btn"
+          :onclick "hyprpicker -a"
+          "󰈊"))
+
+      ;; ROW 3
+      (box
+        :spacing 10
+
+        (button
+          :class "toggle-btn"
+          :onclick "hyprctl reload"
+          "󰑓")
+
+        (button
+          :class "toggle-btn"
+          :onclick "wlogout"
+          "󰐥")
+
+        (button
+          :class "toggle-btn"
+          :onclick "hyprctl dispatch togglefloating active"
+          "󰹑")))
+
+    ;; =====================================================
+    ;; BRIGHTNESS
+    ;; =====================================================
+
+    (box
+      :orientation "v"
+      :spacing 8
+
+      (label
+        :class "section-title"
+        :text "Brightness")
+
+      (scale
+        :min 0
+        :max 100
+        :value 50
+        :onchange "brightnessctl set {}%"))
+
+    ;; =====================================================
+    ;; VOLUME
+    ;; =====================================================
+
+    (box
+      :orientation "v"
+      :spacing 8
+
+      (label
+        :class "section-title"
+        :text "Volume")
+
+      (scale
+        :min 0
+        :max 100
+        :value 50
+        :onchange "pamixer --set-volume {}"))
+
+    ;; =====================================================
+    ;; MEDIA PLAYER
+    ;; =====================================================
+
+    (box
+      :orientation "v"
+      :class "media-box"
+      :spacing 10
+
+      (label
+        :class "section-title"
+        :text "Now Playing")
+
+      (label
+        :class "media-text"
+        :text "playerctl metadata title || echo 'Nothing Playing'")
+
+      (box
+        :spacing 10
+
+        (button
+          :class "media-btn"
+          :onclick "playerctl previous"
+          "󰒮")
+
+        (button
+          :class "media-btn"
+          :onclick "playerctl play-pause"
+          "󰐎")
+
+        (button
+          :class "media-btn"
+          :onclick "playerctl next"
+          "󰒭")))
+
+    ;; =====================================================
+    ;; NOTIFICATION PLACEHOLDER
+    ;; =====================================================
+
+    (box
+      :orientation "v"
+      :class "notif-box"
+      :spacing 10
+
+      (label
+        :class "section-title"
+        :text "Notifications")
+
+      (label
+        :class "notif-text"
+        :text "SwayNC running..."))
+
+  )
+)

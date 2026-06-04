@@ -70,7 +70,8 @@
         "format": "  {title}",
         "format-paused": "  {title}",
         "max-length": 30,
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "~/.config/eww/scripts/media-info.sh && eww open --toggle media_popup"
     },
 
     "clock": {

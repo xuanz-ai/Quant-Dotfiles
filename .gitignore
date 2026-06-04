@@ -29,5 +29,8 @@
 !btop/
 !btop/**
 
+!eww/
+!eww/**
+
 !.gitignore
 !README.md
