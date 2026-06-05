@@ -1,0 +1,64 @@
+/* =========================================================
+   DISK POPUP
+   Theme: matches Waybar (#16161D / #d5c89a / #89b4fa)
+   ========================================================= */
+
+.disk-popup {
+  background: transparentize($bg, 0.06);
+  border: 1px solid transparentize($accent, 0.82);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.disk-shortcuts {
+  padding: 0 2px 2px;
+}
+
+.disk-info {
+  padding: 7px 9px;
+  border-radius: 5px;
+}
+
+.disk-info-icon {
+  color: $accent;
+  font-size: 20px;
+  min-width: 120px;
+}
+
+.disk-info-label {
+  color: $fg;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.disk-info-value {
+  color: $accent;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.disk-shortcut {
+  background: transparent;
+  border-radius: 5px;
+  padding: 7px 9px;
+  transition: all 0.15s ease;
+}
+
+.disk-shortcut:hover {
+  background: transparentize($accent, 0.86);
+}
+
+.disk-shortcut:active {
+  background: transparentize($accent, 0.75);
+}
+
+.disk-shortcut-icon {
+  color: $accent;
+  font-size: 14px;
+  min-width: 20px;
+}
+
+.disk-shortcut-label {
+  color: $fg;
+  font-size: 11px;
+}

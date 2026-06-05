@@ -147,7 +147,8 @@
 
     "disk": {
         "path": "/",
-        "format": "󰋊 {percentage_used}%"
+        "format": "󰋊 {percentage_used}%",
+        "on-click": "~/.config/eww/scripts/disk-popup.sh toggle"
     },
 
     "group/power": {

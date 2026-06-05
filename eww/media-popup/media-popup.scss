@@ -1,0 +1,143 @@
+/* =========================================================
+   MEDIA POPUP
+   Theme: matches Waybar (#16161D / #d5c89a / #89b4fa)
+   ========================================================= */
+
+.media-popup {
+  background: transparentize($bg, 0.06);
+  border: 1px solid transparentize($accent, 0.82);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.media-art-box {
+  min-width: 115px;
+  min-height: 115px;
+  border-radius: 8px;
+  background: transparentize($bg2, 0.30);
+}
+
+.media-art {
+  border-radius: 8px;
+  min-width: 115px;
+  min-height: 115px;
+}
+
+.media-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: $fg;
+  min-width: 0;
+}
+
+.media-artist {
+  font-size: 10px;
+  color: $fg2;
+  margin-bottom: 4px;
+}
+
+/* Progress bar */
+
+.media-progress-row {
+  margin-top: 2px;
+}
+
+.media-time {
+  font-size: 9px;
+  color: $fg2;
+  min-width: 34px;
+}
+
+.media-progress {
+  min-width: 0;
+}
+
+.media-progress trough {
+  background: transparentize($bg2, 0.20);
+  min-height: 4px;
+  border-radius: 2px;
+}
+
+.media-progress highlight {
+  background: $accent;
+  border-radius: 2px;
+}
+
+.media-progress slider {
+  min-width: 10px;
+  min-height: 10px;
+  border-radius: 50%;
+  background: $accent;
+  box-shadow: none;
+}
+
+/* Controls */
+
+.media-controls {
+  margin-top: 4px;
+}
+
+.media-btn {
+  font-size: 14px;
+  color: $fg;
+  background: transparent;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.media-btn:hover {
+  background: transparentize($accent, 0.85);
+  color: $accent;
+}
+
+.media-btn:active {
+  background: transparentize($accent, 0.75);
+}
+
+.play-btn {
+  font-size: 18px;
+  color: $accent;
+  padding: 4px 10px;
+}
+
+/* Volume slider */
+
+.media-volume-row {
+  margin-top: 2px;
+}
+
+.media-vol-icon {
+  font-size: 12px;
+  color: $fg2;
+  min-width: 16px;
+}
+
+.media-volume {
+  min-width: 0;
+}
+
+.media-volume trough {
+  background: transparentize($bg2, 0.20);
+  min-height: 3px;
+  border-radius: 2px;
+}
+
+.media-volume highlight {
+  background: $fg;
+  border-radius: 2px;
+}
+
+.media-volume slider {
+  min-width: 8px;
+  min-height: 8px;
+  border-radius: 50%;
+  background: $fg;
+  box-shadow: none;
+}
+
+.media-vol-pct {
+  font-size: 9px;
+  color: $fg2;
+  min-width: 28px;
+}

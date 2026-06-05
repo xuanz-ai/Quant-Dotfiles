@@ -8,10 +8,24 @@
 
 CACHE_DIR="/tmp/eww-media"
 CACHE_FILE="$CACHE_DIR/state.json"
+LOCK_FILE="$CACHE_DIR/.lock"
 
 mkdir -p "$CACHE_DIR"
 
 # ── Helpers ──────────────────────────────────────────────
+
+cleanup_old_art() {
+  find "$CACHE_DIR" -type f -mmin +60 -delete 2>/dev/null
+}
+
+# Check for either md5sum (coreutils) or md5 (busybox)
+if command -v md5sum &>/dev/null; then
+  md5_cmd() { md5sum | cut -d' ' -f1; }
+elif command -v md5 &>/dev/null; then
+  md5_cmd() { md5 | cut -d' ' -f4; }
+else
+  md5_cmd() { head -c 256 | cksum | cut -d' ' -f1; }
+fi
 
 fmt_time() {
   local secs="${1%.*}"
@@ -67,6 +81,13 @@ maybe_refresh() {
   [ -f "$CACHE_FILE" ] && age=$(($(date +%s) - $(stat -c %Y "$CACHE_FILE" 2>/dev/null || echo 0)))
   [ "$age" -le 1 ] && return 0
 
+  # Lock to prevent concurrent cache writes
+  exec 9>"$LOCK_FILE"
+  if ! flock -n 9; then
+    exec 9>&-
+    return 0
+  fi
+
   # ── Volume ──────────────────────────────────────────
   local vol muted vol_icon
   vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | awk '{print int($2 * 100)}')
@@ -105,7 +126,9 @@ maybe_refresh() {
       --argjson vol "$vol" \
       --argjson muted "$muted" \
       --arg vicon "$vol_icon" \
-      --arg vstr "${vol}%" > "$CACHE_FILE"
+      --arg vstr "${vol}%" > "$CACHE_FILE.tmp" \
+      && mv "$CACHE_FILE.tmp" "$CACHE_FILE"
+    exec 9>&-
     return 0
   fi
 
@@ -119,6 +142,8 @@ maybe_refresh() {
 
   len_us=${length%%.*}
   pos_sec=${position%%.*}
+  [ -n "$len_us" ] && [ "$len_us" -gt 0 ] 2>/dev/null || len_us=0
+  [ -n "$pos_sec" ] && [ "$pos_sec" -ge 0 ] 2>/dev/null || pos_sec=0
   len_sec=$(( len_us / 1000000 ))
 
   [ "$len_sec" -gt 0 ] && position_pct=$(( pos_sec * 100 / len_sec )) || position_pct=0
@@ -133,21 +158,21 @@ maybe_refresh() {
   art_path=""
   if [ -n "$art_url" ]; then
     if [[ "$art_url" == http* ]]; then
-      art_hash=$(echo "$art_url" | md5sum | cut -d' ' -f1)
+      art_hash=$(printf '%s' "$art_url" | md5_cmd)
       art_file="$CACHE_DIR/$art_hash"
       if [ ! -f "$art_file" ]; then
-        find "$CACHE_DIR" -type f -mmin +60 -delete 2>/dev/null
-        curl -sS "$art_url" -o "$art_file" 2>/dev/null
+        cleanup_old_art
+        curl -fsSL "$art_url" -o "$art_file" 2>/dev/null
       fi
       [ -s "$art_file" ] && art_path="$art_file"
     elif [[ "$art_url" == file://* ]]; then
       art_src="${art_url#file://}"
       if [ -f "$art_src" ]; then
         art_sig=$(stat -c '%Y:%s' "$art_src" 2>/dev/null || echo "")
-        art_hash=$(printf '%s:%s' "$art_url" "$art_sig" | md5sum | cut -d' ' -f1)
+        art_hash=$(printf '%s:%s' "$art_url" "$art_sig" | md5_cmd)
         art_file="$CACHE_DIR/$art_hash"
         if [ ! -f "$art_file" ]; then
-          find "$CACHE_DIR" -type f -mmin +60 -delete 2>/dev/null
+          cleanup_old_art
           cp "$art_src" "$art_file" 2>/dev/null
         fi
         [ -s "$art_file" ] && art_path="$art_file"
@@ -160,7 +185,7 @@ maybe_refresh() {
     if [ -n "$ytid" ]; then
       art_file="$CACHE_DIR/yt-$ytid.jpg"
       if [ ! -f "$art_file" ]; then
-        find "$CACHE_DIR" -type f -mmin +60 -delete 2>/dev/null
+        cleanup_old_art
         tmp_art="$art_file.tmp"
         if curl -fsSL "https://i.ytimg.com/vi/$ytid/hqdefault.jpg" -o "$tmp_art" 2>/dev/null; then
           mv "$tmp_art" "$art_file"
@@ -193,7 +218,10 @@ maybe_refresh() {
     --argjson muted "$muted" \
     --arg vicon "$vol_icon" \
     --arg vstr "${vol}%" \
-    > "$CACHE_FILE"
+    > "$CACHE_FILE.tmp" \
+    && mv "$CACHE_FILE.tmp" "$CACHE_FILE"
+
+  exec 9>&-
 }
 
 # ── Main ─────────────────────────────────────────────────

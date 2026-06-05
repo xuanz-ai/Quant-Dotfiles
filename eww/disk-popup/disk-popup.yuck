@@ -1,0 +1,75 @@
+;; ── Disk shortcuts popup (toggled from Waybar disk) ───
+
+(defpoll disk_used :interval "5s" `df -h / | awk 'NR == 2 {print $3 " / " $2 " (" $5 ")"}'`)
+
+(defwindow disk_popup
+  :monitor 0
+  :geometry (geometry
+    :x "12px"
+    :y "40px"
+    :width "200px"
+    :height "240px"
+    :anchor "top right")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+
+  (box
+    :class "disk-popup"
+    :orientation "v"
+
+    (box
+      :class "disk-shortcuts"
+      :orientation "v"
+      :spacing 5
+
+      (box
+        :class "disk-info"
+        :orientation "h"
+        :spacing 10
+        (label :class "disk-info-icon" :text "󰋊")
+        (label :class "disk-info-value" :text disk_used :halign "start"))
+
+      (button
+        :class "disk-shortcut"
+        :onclick "~/.config/eww/scripts/disk-popup.sh open documents"
+        (box :orientation "h" :spacing 10
+          (label :class "disk-shortcut-icon" :text "󰈙")
+          (label :class "disk-shortcut-label" :text "Documents" :halign "start")))
+
+      (button
+        :class "disk-shortcut"
+        :onclick "~/.config/eww/scripts/disk-popup.sh open downloads"
+        (box :orientation "h" :spacing 10
+          (label :class "disk-shortcut-icon" :text "󰉍")
+          (label :class "disk-shortcut-label" :text "Downloads" :halign "start")))
+
+      (button
+        :class "disk-shortcut"
+        :onclick "~/.config/eww/scripts/disk-popup.sh open music"
+        (box :orientation "h" :spacing 10
+          (label :class "disk-shortcut-icon" :text "󰝚")
+          (label :class "disk-shortcut-label" :text "Music" :halign "start")))
+
+      (button
+        :class "disk-shortcut"
+        :onclick "~/.config/eww/scripts/disk-popup.sh open pictures"
+        (box :orientation "h" :spacing 10
+          (label :class "disk-shortcut-icon" :text "󰉏")
+          (label :class "disk-shortcut-label" :text "Pictures" :halign "start")))
+
+      (button
+        :class "disk-shortcut"
+        :onclick "~/.config/eww/scripts/disk-popup.sh open config"
+        (box :orientation "h" :spacing 10
+          (label :class "disk-shortcut-icon" :text "")
+          (label :class "disk-shortcut-label" :text ".config" :halign "start")))
+
+      (button
+        :class "disk-shortcut"
+        :onclick "~/.config/eww/scripts/disk-popup.sh open code"
+        (box :orientation "h" :spacing 10
+          (label :class "disk-shortcut-icon" :text "")
+          (label :class "disk-shortcut-label" :text "Code" :halign "start")))))
+
+)
