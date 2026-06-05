@@ -8,7 +8,6 @@
 (defpoll m_title        :interval "1s" `~/.config/eww/scripts/media-info.sh title`)
 (defpoll m_artist       :interval "1s" `~/.config/eww/scripts/media-info.sh artist`)
 (defpoll m_art_path     :interval "1s" `~/.config/eww/scripts/media-info.sh art_path`)
-(defpoll m_player_icon  :interval "1s" `~/.config/eww/scripts/media-info.sh player_icon`)
 (defpoll m_pos_str      :interval "1s" `~/.config/eww/scripts/media-info.sh position_str`)
 (defpoll m_dur_str      :interval "1s" `~/.config/eww/scripts/media-info.sh duration_str`)
 (defpoll m_pos_pct      :interval "1s" `~/.config/eww/scripts/media-info.sh position_pct`)
@@ -54,11 +53,10 @@
       :spacing 6
       :halign "fill"
 
-      ;; Title + player source icon
+      ;; Title
       (box
         :class "media-title-row"
         :spacing 8
-        (label :class "player-icon" :text m_player_icon)
         (label :class "media-title" :text m_title
                :halign "start" :wrap true :limit-width 20))
 
