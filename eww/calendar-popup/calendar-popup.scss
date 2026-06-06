@@ -1,0 +1,37 @@
+/* =========================================================
+   CALENDAR POPUP
+   Theme: matches Waybar (#16161D / #d5c89a / #89b4fa)
+   ========================================================= */
+
+.calendar-popup {
+  background: transparentize($bg, 0.06);
+  border: 1px solid transparentize($accent, 0.82);
+  border-radius: 12px;
+  padding: 16px 22px;
+}
+
+.cal-time {
+  font-size: 26px;
+  font-weight: bold;
+  color: $fg;
+  font-family: "JetBrainsMono Nerd Font";
+}
+
+.cal-date {
+  font-size: 11px;
+  color: $fg2;
+  font-family: "JetBrainsMono Nerd Font";
+}
+
+.cal-separator {
+  background: transparentize($fg2, 0.82);
+  min-height: 1px;
+  margin: 4px 0;
+}
+
+.cal-grid {
+  font-size: 12px;
+  font-family: "JetBrainsMono Nerd Font";
+  color: $fg;
+  margin-top: 2px;
+}

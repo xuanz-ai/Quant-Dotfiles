@@ -5,6 +5,7 @@
 
 (include "./media-popup/media-popup.yuck")
 (include "./disk-popup/disk-popup.yuck")
+(include "./calendar-popup/calendar-popup.yuck")
 
 ;; ── Control center ────────────────────────────────────
 

@@ -76,7 +76,8 @@
 
     "clock": {
         "format": "󰥔 {:%H:%M}",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "eww open --toggle calendar_popup"
     },
 
     "custom/notification": {
