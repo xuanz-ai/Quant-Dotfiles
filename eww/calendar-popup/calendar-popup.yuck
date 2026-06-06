@@ -11,8 +11,8 @@
   :geometry (geometry
     :x "0%"
     :y "40px"
-    :width "390px"
-    :height "188px"
+    :width "700px"
+    :height "0px"
     :anchor "top center")
   :stacking "overlay"
   :exclusive false
@@ -38,17 +38,18 @@
     (box
       :class "cal-right"
       :orientation "v"
-      :spacing 6
-
+      :spacing 1
+      :halign "center"
+      :valign "center"
       (label
         :class "cal-date"
+        :halign "center"
+        :valign "center"
         :text cal_date)
-
-      (box
-        :class "cal-separator")
-
       (label
         :class "cal-grid"
-        :markup "true"
-        :text cal_month)))
-)
+        :halign "center"
+        :valign "center"
+        :markup true
+        :text cal_month))
+))

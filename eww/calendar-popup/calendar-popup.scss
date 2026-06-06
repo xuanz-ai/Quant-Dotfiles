@@ -6,21 +6,20 @@
 .calendar-popup {
   background: transparentize($bg, 0.06);
   border: 1px solid transparentize($accent, 0.82);
-  border-radius: 12px;
-  padding: 16px 18px;
+  border-radius: 5px;
+  padding: 20px 20px;
 }
 
 /* Clock panel */
 
 .cal-time-panel {
-  padding-right: 16px;
-  border-right: 1px solid transparentize($fg2, 0.82);
-  margin-right: 14px;
-  min-width: 140px;
+  margin-right: 0px;
+  min-width: 300px;
+  
 }
 
 .cal-time {
-  font-size: 50px;
+  font-size: 90px;
   font-weight: bold;
   color: $accent;
   font-family: "Terminess Nerd Font Mono";
@@ -29,19 +28,18 @@
 /* Calendar panel */
 
 .cal-date {
-  font-size: 11px;
-  color: $fg;
+  font-size: 15px;
+  font-weight: bold;
+  color: $fg2;
   font-family: "JetBrainsMono Nerd Font";
-}
-
-.cal-separator {
-  background: transparentize($fg2, 0.82);
-  min-height: 1px;
-  margin: 4px 0;
+  margin-bottom: -1px;
+  margin-top: -70px;
 }
 
 .cal-grid {
-  font-size: 11px;
-  font-family: "JetBrainsMono Nerd Font";
+  font-size: 18px;
+  font-family: "JetBrainsMono Nerd Font", monospace;
   color: $fg;
+  padding: 0px;
+  margin-top: -60px;
 }
