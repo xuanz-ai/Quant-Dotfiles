@@ -10,7 +10,7 @@ first_dow=$(date -d "$year-$month-01" +%u)
 dim=$(date -d "$year-$month-01 +1 month -1 day" +%d)
 
 # Use 2 spaces between day names
-echo "Mo  Tu  We  Th  Fr  Sa  Su"
+# Header moved to static label in yuck
 
 line=""
 for ((i=1; i<first_dow; i++)); do

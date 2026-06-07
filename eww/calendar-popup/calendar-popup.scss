@@ -32,14 +32,23 @@
   font-weight: bold;
   color: $fg2;
   font-family: "JetBrainsMono Nerd Font";
-  margin-bottom: -1px;
-  margin-top: -70px;
+  margin-bottom: -17px;
+  margin-top: -50px;
+}
+
+.cal-header {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  color: $accent;
+  margin-top: -60px;
+  
 }
 
 .cal-grid {
-  font-size: 18px;
+  font-size: 15px;
   font-family: "JetBrainsMono Nerd Font", monospace;
   color: $fg;
   padding: 0px;
-  margin-top: -60px;
+  margin-top: -40px;
 }

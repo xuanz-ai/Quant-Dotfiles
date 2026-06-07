@@ -47,9 +47,13 @@
         :valign "center"
         :text cal_date)
       (label
+        :class "cal-header"
+        :halign "center"
+        :valign "center"
+        :text "Mo  Tu  We  Th  Fr  Sa  Su")
+      (label
         :class "cal-grid"
         :halign "center"
         :valign "center"
-        :markup true
         :text cal_month))
 ))
